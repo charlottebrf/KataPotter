@@ -1,5 +1,7 @@
-const sum = require('../src/potter');
+const cashRegister = require('../src/potter');
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
+test('one copy of a HP book costs 8 EUR', () => {
+  let assortedHPBooks = new Map();
+  assortedHPBooks = assortedHPBooks.set('Harry Potter and the Philosopher\'s Stone', 1)
+  expect(cashRegister(assortedHPBooks)).toBe(8);
 });
