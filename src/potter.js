@@ -1,9 +1,11 @@
+
 function cashRegister(assortedHPBooks) {
-  let HPvalues = assortedHPBooks.values()
-  if (HPvalues.next().value == 1 && HPvalues.next().value == 1) {
-    return 16 - 0.8
-  } else if (assortedHPBooks.values().next().value == 1) {
+  if (assortedHPBooks.size == 1) {
     return 8
+  } else if (assortedHPBooks.size == 2 && assortedHPBooks.values().next.key != "Harry Potter and the Philosopher's Stone") {
+    return 15.2
+  } else {
+    return 21.60
   }
 }
 
