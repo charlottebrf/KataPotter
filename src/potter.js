@@ -7,10 +7,12 @@ const twentyFivePercentDiscount = 10
 function cashRegister(assortedHPBooks) {
   if (assortedHPBooks.size == 1) {
     return oneBook()
-  } else if (assortedHPBooks.size == 2 && assortedHPBooks.values().next.key != "Harry Potter and the Philosopher's Stone") {
+  } else if (assortedHPBooks.size == 2 && checkAllDifferentBooks(assortedHPBooks) == true) {
     return twoDifferentBooks()
-  } else {
+  } else if (assortedHPBooks.size == 3 && checkAllDifferentBooks(assortedHPBooks) == true) {
     return threeDifferentBooks()
+  }  else if (assortedHPBooks.size == 4 && checkAllDifferentBooks(assortedHPBooks) == true) {
+    return fourDifferentBooks()
   }
 }
 
@@ -24,6 +26,19 @@ function twoDifferentBooks() {
 
 function threeDifferentBooks() {
   return (normalPrice * 3) - tenPercentDiscount
+}
+
+function fourDifferentBooks() {
+  return (normalPrice * 4) - twentyPercentDiscount
+}
+
+function checkAllDifferentBooks(assortedHPBooks) {
+  let  bookTitles = assortedHPBooks.keys()
+  for (let book of bookTitles) {
+    if (bookTitles.next().value != bookTitles.next().value) {
+      return true
+    }
+  }
 }
 
 module.exports = cashRegister;
