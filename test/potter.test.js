@@ -10,7 +10,7 @@ test('two different copies of a HP book costs gives a 5% discount', () => {
   expect(cashRegister(assortedHPBooks)).toBe(15.2);
 });
 
-test('two different copies of a HP book costs gives a 5% discount', () => {
+test('two different copies of a HP book costs gives a 10% discount', () => {
     let assortedHPBooks = new Map([['Harry Potter and the Philosopher\'s Stone', 1], ['Second book', 1], ['Third book', 1]]);
   expect(cashRegister(assortedHPBooks)).toBe(21.60);
 });
