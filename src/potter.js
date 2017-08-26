@@ -13,6 +13,8 @@ function cashRegister(assortedHPBooks) {
     return threeDifferentBooks()
   }  else if (assortedHPBooks.size == 4 && checkAllDifferentBooks(assortedHPBooks) == true) {
     return fourDifferentBooks()
+  } else if (assortedHPBooks.size == 5 && checkAllDifferentBooks(assortedHPBooks) == true) {
+    return fiveDifferentBooks()
   }
 }
 
@@ -30,6 +32,10 @@ function threeDifferentBooks() {
 
 function fourDifferentBooks() {
   return (normalPrice * 4) - twentyPercentDiscount
+}
+
+function fiveDifferentBooks() {
+  return (normalPrice * 5) - twentyFivePercentDiscount
 }
 
 function checkAllDifferentBooks(assortedHPBooks) {
