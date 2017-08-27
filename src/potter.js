@@ -1,3 +1,5 @@
+var unique = require('array-unique');
+
 const normalPrice = 8
 const fivePercentDiscount = 0.8
 const tenPercentDiscount = 2.40
@@ -5,15 +7,15 @@ const twentyPercentDiscount = 6.40
 const twentyFivePercentDiscount = 10
 
 function cashRegister(assortedHPBooks) {
-  if (assortedHPBooks.size == 1) {
+  if (assortedHPBooks.length == 1) {
     return oneBook()
-  } else if (assortedHPBooks.size == 2 && checkAllDifferentBooks(assortedHPBooks) == true) {
-    return twoDifferentBooks()
-  } else if (assortedHPBooks.size == 3 && checkAllDifferentBooks(assortedHPBooks) == true) {
+  } else if (assortedHPBooks.length == 2) {
+    return twoBooks(assortedHPBooks)
+  } else if (assortedHPBooks.length == 3 && allDifferentBooks(assortedHPBooks) == true) {
     return threeDifferentBooks()
-  }  else if (assortedHPBooks.size == 4 && checkAllDifferentBooks(assortedHPBooks) == true) {
+  }  else if (assortedHPBooks.length == 4 && allDifferentBooks(assortedHPBooks) == true) {
     return fourDifferentBooks()
-  } else if (assortedHPBooks.size == 5 && checkAllDifferentBooks(assortedHPBooks) == true) {
+  } else if (assortedHPBooks.length == 5 && allDifferentBooks(assortedHPBooks) == true) {
     return fiveDifferentBooks()
   }
 }
@@ -38,13 +40,35 @@ function fiveDifferentBooks() {
   return (normalPrice * 5) - twentyFivePercentDiscount
 }
 
-function checkAllDifferentBooks(assortedHPBooks) {
-  let  bookTitles = assortedHPBooks.keys()
-  for (let book of bookTitles) {
-    if (bookTitles.next().value != bookTitles.next().value) {
-      return true
+function allDifferentBooks(assortedHPBooks) {
+  let uniqueBooks = unique(assortedHPBooks)
+  if (assortedHPBooks == uniqueBooks) {
+    return true
+  }
+}
+
+function countDuplicativeBooks(assortedHPBooks) {
+  let result = []
+  assortedHPBooks.forEach(function(element, index) {
+    if (assortedHPBooks.indexOf(element, index + 1) > -1) {
+      result.push(element)
+    }
+  })
+  console.log(result)
+  return result
+}
+
+
+function twoBooks(assortedHPBooks) {
+  if(allDifferentBooks(assortedHPBooks) == true) {
+    return twoDifferentBooks()
+  } else {
+    let duplicatives = countDuplicativeBooks(assortedHPBooks)
+    if (duplicatives.length == 2) {
+      return oneBook() + twoDifferentBooks()
     }
   }
 }
+
 
 module.exports = cashRegister;
