@@ -20,6 +20,22 @@ function cashRegister(assortedHPBooks) {
   }
 }
 
+function twoBooks(assortedHPBooks) {
+  if (allDifferentBooks(assortedHPBooks) == true) {
+    return twoDifferentBooks()
+  } else if (duplicativeBooks(assortedHPBooks) == 1) {
+    return 23.2
+  }
+}
+
+function allDifferentBooks(assortedHPBooks) {
+  let allBooks = assortedHPBooks.length
+  let uniqueBooks = unique(assortedHPBooks).length
+  if (allBooks == uniqueBooks) {
+    return true
+  }
+}
+
 function oneBook() {
   return normalPrice
 }
@@ -40,35 +56,17 @@ function fiveDifferentBooks() {
   return (normalPrice * 5) - twentyFivePercentDiscount
 }
 
-function allDifferentBooks(assortedHPBooks) {
-  let uniqueBooks = unique(assortedHPBooks)
-  if (assortedHPBooks == uniqueBooks) {
-    return true
-  }
-}
-
-function countDuplicativeBooks(assortedHPBooks) {
-  let result = []
-  assortedHPBooks.forEach(function(element, index) {
-    if (assortedHPBooks.indexOf(element, index + 1) > -1) {
-      result.push(element)
-    }
-  })
-  console.log(result)
-  return result
-}
-
-
-function twoBooks(assortedHPBooks) {
-  if(allDifferentBooks(assortedHPBooks) == true) {
-    return twoDifferentBooks()
-  } else {
-    let duplicatives = countDuplicativeBooks(assortedHPBooks)
-    if (duplicatives.length == 2) {
-      return oneBook() + twoDifferentBooks()
+function duplicativeBooks(assortedHPBooks) {
+  duplicatives = []
+  for (const [index, value] of assortedHPBooks.entries()) {
+    if (value == assortedHPBooks[index + 1] ) {
+      duplicatives.push(value)
     }
   }
+  return duplicatives.length
 }
+
+
 
 
 module.exports = cashRegister;
