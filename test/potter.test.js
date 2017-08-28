@@ -111,12 +111,22 @@ test('five books with 2 different HP books gives the 5% discount', () => {
 test('five books of the same titles gives the standard price', () => {
     let assortedHPBooks =  ["Harry Potter and the Philosopher\'s Stone",
                             "Harry Potter and the Philosopher\'s Stone",
+                            "Harry Potter and the Philosopher\'s Stone",
+                            "Harry Potter and the Philosopher\'s Stone",
+                            "Harry Potter and the Philosopher\'s Stone",
+                            ]
+  expect(cashRegister(assortedHPBooks)).toBe(40.00)
+})
+
+test('kata sample data: 3 sets of the same books, 2 different books', () => {
+    let assortedHPBooks =  ["Harry Potter and the Philosopher\'s Stone",
+                            "Harry Potter and the Philosopher\'s Stone",
                             "Harry Potter and the Chamber of Secrets",
                             "Harry Potter and the Chamber of Secrets",
                             "Harry Potter and the Prisoner of Azkaban",
                             "Harry Potter and the Prisoner of Azkaban",
                             "Harry Potter and the Goblet of fire",
-                            "Harry Potter and the Goblet of fire",
+                            "Order of the Phoenix",
                             ]
   expect(cashRegister(assortedHPBooks)).toBe(51.60)
 })
