@@ -7,70 +7,34 @@ const twentyPercentDiscount = 6.40
 const twentyFivePercentDiscount = 10
 
 function cashRegister(assortedHPBooks) {
-  if (assortedHPBooks.length == 1) {
+  let length = assortedHPBooks.length
+  let unique = uniqueBooks(assortedHPBooks)
+  let discount = calculateDiscount(unique)
+  let normalBooks = length - unique
+  return (normalBooks * oneBook()) + discount
+}
+
+function calculateDiscount(unique) {
+  switch (unique) {
+    case 1:
     return oneBook()
-  } else if (assortedHPBooks.length == 2) {
-    return twoBooks(assortedHPBooks)
-  } else if (assortedHPBooks.length == 3) {
-    return threeBooks(assortedHPBooks)
-  }  else if (assortedHPBooks.length == 4) {
-    return fourBooks(assortedHPBooks)
-  } else if (assortedHPBooks.length == 5) {
-    return fiveBooks(assortedHPBooks)
-  }
-}
-
-function twoBooks(assortedHPBooks) {
-  if (allDifferentBooks(assortedHPBooks) == true) {
+    break;
+    case 2:
     return twoDifferentBooks()
-  } else if (duplicativeBooks(assortedHPBooks) == 1) {
-    return 2 * oneBook()
-  }
-}
-
-function threeBooks(assortedHPBooks) {
-  if (allDifferentBooks(assortedHPBooks) == true) {
+    break;
+    case 3:
     return threeDifferentBooks()
-  } else if (duplicativeBooks(assortedHPBooks) == 2) {
-    return oneBook() + twoDifferentBooks()
-  } else {
-    return 3 * oneBook()
-  }
-}
-
-function fourBooks(assortedHPBooks) {
-  if (allDifferentBooks(assortedHPBooks) == true) {
+    break;
+    case 4:
     return fourDifferentBooks()
-  } else if (duplicativeBooks(assortedHPBooks) == 3) {
-    return oneBook() + threeDifferentBooks()
-  } else if (duplicativeBooks(assortedHPBooks) == 2) {
-    return (2 * oneBook()) + twoDifferentBooks()
-  } else {
-    return 4 * oneBook()
-  }
-}
-
-function fiveBooks(assortedHPBooks) {
-  if (allDifferentBooks(assortedHPBooks) == true) {
+    break;
+    case 5:
     return fiveDifferentBooks()
-  } else if (duplicativeBooks(assortedHPBooks) == 4) {
-    return oneBook() + fourDifferentBooks()
-  } else if (duplicativeBooks(assortedHPBooks) == 3) {
-    return (2 * oneBook()) + threeDifferentBooks()
-  } else if (duplicativeBooks(assortedHPBooks) == 2){
-    return (3 * oneBook()) + twoDifferentBooks()
-  } else {
-    return 5 * oneBook()
+    break;
   }
 }
 
-function allDifferentBooks(assortedHPBooks) {
-  let allBooks = assortedHPBooks.length
-  let uniqueBooks = unique(assortedHPBooks).length
-  return allBooks == uniqueBooks
-}
-
-function duplicativeBooks(assortedHPBooks) {
+function uniqueBooks(assortedHPBooks) {
   return unique(assortedHPBooks).length
 }
 
